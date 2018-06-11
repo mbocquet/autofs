@@ -1,0 +1,25 @@
+---
+# defaults file for fail2ban
+fail2ban_packages:
+  - 'fail2ban'
+
+# local configuration changes should go there (choose one)
+fail2ban_jail_local: '/etc/fail2ban/jail.local'
+# fail2ban_jail_local: '/etc/fail2ban/jail.d/customisation.local
+
+fail2ban_ignoreip:
+  - '127.0.0.1/8'
+#   - 'host.example.org'
+
+# bantime
+fail2ban_bantime: '3600'
+
+# emails
+fail2ban_destemail: 'root'
+fail2ban_mta: 'sendmail'
+
+# enabled jails
+# fail2ban_jails:
+#   - sshd
+#   - ssh-ddos
+...

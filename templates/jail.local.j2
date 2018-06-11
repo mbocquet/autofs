@@ -1,0 +1,23 @@
+# {{ ansible_managed }} (roles/fail2ban/templates/jail.local)
+
+[DEFAULT]
+{% if fail2ban_ignoreip is defined %}
+ignoreip = {{ fail2ban_ignoreip | join (' ') }}
+{% endif %}
+{% if fail2ban_bantime is defined %}
+bantime = {{ fail2ban_bantime }}
+{% endif %}
+{% if fail2ban_destemail is defined %}
+
+destemail = {{ fail2ban_destemail }}
+{% endif %}
+{% if fail2ban_mta is defined %}
+mta = {{ fail2ban_mta }}
+{% endif %}
+{% if fail2ban_jails is defined %}
+{% for jail in fail2ban_jails %}
+
+[{{ jail }}]
+enabled = true
+{% endfor %}
+{% endif %}
