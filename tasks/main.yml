@@ -13,7 +13,7 @@
     src: 'jail.local.j2'
     dest: "{{ fail2ban_jail_local }}"
   notify:
-    - fail2ban reload
+    - fail2ban restart
   tags:
     - fail2ban
     - config
