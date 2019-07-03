@@ -37,7 +37,7 @@
     - nfs-client
     - services
 
-- name : volumes
+- name: volumes
   template:
     src: auto.map.j2
     dest: /etc/auto.misc
