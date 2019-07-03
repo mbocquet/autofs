@@ -6,7 +6,7 @@
   tags:
     - autofs
     - auto.master.d
-  
+
 - name: auto.master
   template:
     src: auto.master.map.j2
