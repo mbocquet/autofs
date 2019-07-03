@@ -1,0 +1,5 @@
+---
+autofs_packages:
+- autofs
+- nfs-utils
+...

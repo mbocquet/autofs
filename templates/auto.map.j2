@@ -1,0 +1,5 @@
+# {{ ansible_managed }} (role: nfs-client, file: auto.misc.j2)
+
+{% for item in autofs_mounts %}
+{{ item.mountname }}	{{ item.options | default (autofs_nfs_options) }}		{{ item.filer }}:{{ item.vol }}
+{% endfor %}

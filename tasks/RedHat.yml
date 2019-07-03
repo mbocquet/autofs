@@ -1,0 +1,54 @@
+---
+- name: auto.master
+  replace:
+    dest: /etc/auto.master
+    regexp: '^.*/misc\s+/etc/auto.misc.*$'
+    replace: '/misc /etc/auto.misc --ghost --timeout=600'
+    backup: yes
+  notify: restart autofs
+  ignore_errors: 'True'
+  tags:
+    - nfs-client
+    - autofs
+
+- name: services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+  with_items:
+    - autofs
+    - rpcbind.socket
+    - rpcbind.service
+  when: ( ansible_service_mgr == "systemd" ) and ( ansible_os_family == "RedHat" )
+  tags:
+    - nfs-client
+    - services
+
+- name: start services
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items:
+    - autofs
+    - rpcbind.socket
+    - rpcbind.service
+  when: ( ansible_service_mgr == "systemd" ) and ( ansible_os_family == "RedHat" )
+  tags:
+    - nfs-client
+    - services
+
+- name : volumes
+  template:
+    src: auto.map.j2
+    dest: /etc/auto.misc
+    owner: root
+    group: root
+    mode: 0644
+    backup: yes
+  when: autofs_mounts is defined
+  notify: reload autofs
+  ignore_errors: 'True'
+  tags:
+    - nfs-client
+    - automounts
+...
