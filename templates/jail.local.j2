@@ -19,5 +19,8 @@ mta = {{ fail2ban_mta }}
 
 [{{ jail }}]
 enabled = true
+# temp dirty tweak to really ban all protocols and ports
+protocol = all
+banaction = %(banaction_allports)s
 {% endfor %}
 {% endif %}
