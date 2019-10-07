@@ -1,6 +1,6 @@
 'fail2ban'. Ansible role to install and configure fail2ban.
 
-Copyright © 2018 Mathias Bocquet (mbocquet@sekoya.org)
+Copyright © 2018-2019 Mathias Bocquet (mbocquet@sekoya.org)
 
 This file is part of 'fail2ban' Ansible role.
 
