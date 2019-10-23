@@ -16,7 +16,7 @@ None.
 
 ## Install this roles as submodule of an existing GIT repository
 
-`git submodule add https://github.com/mbocquet/autofs.git roles/autofs`
+`git submodule add https://git.sekoya.org/mb/autofs.git roles/autofs`
 
 ## Example Playbook
 
