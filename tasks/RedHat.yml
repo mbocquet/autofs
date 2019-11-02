@@ -8,33 +8,21 @@
   notify: restart autofs
   ignore_errors: 'True'
   tags:
-    - nfs-client
     - autofs
+    - auto.master.d
 
 - name: services
   service:
     name: "{{ item }}"
     enabled: yes
-  with_items:
-    - autofs
-    - rpcbind.socket
-    - rpcbind.service
-  when: ( ansible_service_mgr == "systemd" ) and ( ansible_os_family == "RedHat" )
-  tags:
-    - nfs-client
-    - services
-
-- name: start services
-  service:
-    name: "{{ item }}"
     state: started
-  with_items:
+  loop:
     - autofs
     - rpcbind.socket
     - rpcbind.service
-  when: ( ansible_service_mgr == "systemd" ) and ( ansible_os_family == "RedHat" )
+  when: ansible_service_mgr == "systemd"
   tags:
-    - nfs-client
+    - autofs
     - services
 
 - name: volumes
@@ -49,6 +37,6 @@
   notify: reload autofs
   ignore_errors: 'True'
   tags:
-    - nfs-client
-    - automounts
+    - autofs
+    - volumes
 ...
