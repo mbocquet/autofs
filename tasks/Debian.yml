@@ -13,6 +13,7 @@
     dest: '/etc/auto.master.d/{{ item.name }}.autofs'
   with_items:
     - '{{ autofs_maps }}'
+  when: autofs_maps is defined
   tags:
     - autofs
     - auto.master
