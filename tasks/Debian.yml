@@ -11,8 +11,7 @@
   template:
     src: auto.master.map.j2
     dest: '/etc/auto.master.d/{{ item.name }}.autofs'
-  with_items:
-    - '{{ autofs_maps }}'
+  loop: '{{ autofs_maps }}'
   when: autofs_maps is defined
   tags:
     - autofs
@@ -26,8 +25,7 @@
     group: root
     mode: 0644
     backup: yes
-  with_items:
-    - '{{ autofs_maps }}'
+  loop: '{{ autofs_maps }}'
   when: autofs_mounts is defined
   notify: reload autofs
   ignore_errors: 'True'
