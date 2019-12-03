@@ -9,10 +9,19 @@
 autofs_nfs_options: '-bg,intr,soft'
 
 # autofs_mounts example
+#
 # autofs_mounts:
 #   - { mountname: 'backup', options: '{{ autofs_nfs_options }},rsize=1048576,wsize=1048576,nfsvers=3', filer: 'nas0', vol: '/srv/backup' }
 #   - mountname: 'pics'
 #     options: '{{ autofs_nfs_options }},rsize=1048576,wsize=1048576,nfsvers=3'
 #     filer: 'nas1'
 #     vol: '/srv/pics'
+
+# autofs_timeoutstopsec
+#
+# autofs stop service timeout. This value will override the default stop
+# timeout. This is useful when remove volumes are unreachable during autofs
+# shutdown.
+#
+# autofs_timeoutstopsec: '10s'
 ...

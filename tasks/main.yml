@@ -7,8 +7,33 @@
     name: "{{ autofs_packages }}"
   tags:
     - autofs
-    - packages
+    - package
 
 - name: "include {{ ansible_os_family }} tasks"
   include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: override
+  block:
+    - name: directory
+      file:
+        path: /etc/systemd/system/autofs.service.d
+        state: directory
+      tags:
+        - directory
+
+    - name: file
+      template:
+        src: override.conf.j2
+        dest: /etc/systemd/system/autofs.service.d/override.conf
+      notify: reload systemd
+      tags:
+        - template
+        - file
+  when:
+    - autofs_timeoutstopsec is defined
+    - ansible_service_mgr == 'systemd'
+  tags:
+    - autofs
+    - override
+    - systemd
 ...

@@ -1,3 +1,5 @@
+---
+# handlers file for autofs
 - name: reload autofs
   service:
     name: autofs
@@ -7,3 +9,8 @@
   service:
     name: autofs
     state: restarted
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+...
