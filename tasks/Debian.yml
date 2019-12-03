@@ -1,4 +1,12 @@
 ---
+- name: packages
+  package:
+    name: "{{ autofs_packages }}"
+    force_apt_get: yes
+  tags:
+    - autofs
+    - package
+
 - name: auto.master.d
   file:
     path: /etc/auto.master.d

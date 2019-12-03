@@ -1,4 +1,11 @@
 ---
+- name: packages
+  package:
+    name: "{{ autofs_packages }}"
+  tags:
+    - autofs
+    - package
+
 - name: auto.master
   replace:
     dest: /etc/auto.master
