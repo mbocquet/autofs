@@ -16,7 +16,7 @@ None.
 
 ## Install this role as submodule of an existing GIT repository
 
-`git submodule add https://github.com/mbocquet/fail2ban.git roles/fail2ban`
+`git submodule add https://git.sekoya.org/mb/fail2ban.git roles/fail2ban`
 
 ## Example Playbook
 
