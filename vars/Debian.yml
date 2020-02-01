@@ -1,5 +1,4 @@
 ---
 autofs_packages:
 - autofs
-- nfs-common
 ...
