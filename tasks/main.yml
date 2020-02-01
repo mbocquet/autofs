@@ -14,7 +14,7 @@
       tags:
         - directory
 
-    - name: file
+    - name: template
       template:
         src: override.conf.j2
         dest: /etc/systemd/system/autofs.service.d/override.conf

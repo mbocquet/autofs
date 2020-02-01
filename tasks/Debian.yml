@@ -1,5 +1,5 @@
 ---
-- name: packages
+- name: package
   package:
     name: "{{ autofs_packages }}"
     force_apt_get: yes
