@@ -1,4 +1,4 @@
 ---
 autofs_packages:
-- autofs
+  - autofs
 ...

@@ -11,9 +11,9 @@
     dest: /etc/auto.master
     regexp: '^.*/misc\s+/etc/auto.misc.*$'
     replace: '/misc /etc/auto.misc --ghost --timeout=600'
-    backup: yes
+    backup: true
   notify: restart autofs
-  ignore_errors: 'True'
+  ignore_errors: true
   tags:
     - autofs
     - auto.master.d
@@ -21,7 +21,7 @@
 - name: services
   service:
     name: "{{ item }}"
-    enabled: yes
+    enabled: true
     state: started
   loop:
     - autofs
@@ -39,10 +39,10 @@
     owner: root
     group: root
     mode: 0644
-    backup: yes
+    backup: true
   when: autofs_mounts is defined
   notify: reload autofs
-  ignore_errors: 'True'
+  ignore_errors: true
   tags:
     - autofs
     - volumes
