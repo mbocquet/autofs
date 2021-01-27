@@ -7,10 +7,10 @@
     - package
 
 - name: auto.master
-  replace:
-    dest: /etc/auto.master
-    regexp: '^.*/misc\s+/etc/auto.misc.*$'
-    replace: '/misc /etc/auto.misc --ghost --timeout=600'
+  lineinfile:
+    path: /etc/auto.master
+    line: '/misc /etc/auto.misc --ghost --timeout=600'
+    state: present
     backup: true
   notify: restart autofs
   ignore_errors: true
