@@ -20,7 +20,7 @@ autofs_nfs_options: '-bg,intr,soft'
 # autofs_timeoutstopsec
 #
 # autofs stop service timeout. This value will override the default stop
-# timeout. This is useful when remove volumes are unreachable during autofs
+# timeout. This is useful when volumes are unreachable during autofs
 # shutdown.
 #
 # autofs_timeoutstopsec: '10s'
