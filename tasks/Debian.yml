@@ -20,6 +20,7 @@
     dest: '/etc/auto.master.d/{{ item.name }}.autofs'
   loop: '{{ autofs_maps }}'
   when: autofs_maps is defined
+  notify: restart autofs
   tags:
     - autofs
     - auto.master
