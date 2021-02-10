@@ -27,7 +27,13 @@ None.
 
     - hosts: servers
       roles:
-         - { role: autofs, x: 42 }
+         - role: autofs
+           when: autofs_mounts is defined
+
+
+    - hosts: servers
+      roles:
+         - { role: autofs, when: autofs_mounts is defined }
 
 ## License
 
