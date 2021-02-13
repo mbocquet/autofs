@@ -9,7 +9,10 @@
 - name: auto.master
   lineinfile:
     path: /etc/auto.master
-    line: '/misc /etc/auto.misc --ghost --timeout=600'
+    regexp: '^.*/misc.*'
+    firstmatch: true
+    insertafter: '^.*/misc.*'
+    line: "/misc /etc/auto.misc --ghost --timeout={{ autofs_timeout }}"
     state: present
     backup: true
   notify: restart autofs
