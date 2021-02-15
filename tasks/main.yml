@@ -3,7 +3,6 @@
 - name: package
   package:
     name: '{{ fail2ban_packages }}'
-    force_apt_get: yes
   tags:
     - fail2ban
     - package
