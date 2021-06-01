@@ -34,3 +34,7 @@
 # shutdown.
 #
 # autofs_timeoutstopsec: '10s'
+
+# autofs_rpcbind_enable
+# boolean. If false, disable rpcbind service and socket. Useful for NFSv4 shares
+# autofs_rpcbind_enable: false

@@ -1,11 +1,4 @@
 ---
-- name: package
-  package:
-    name: "{{ autofs_packages }}"
-  tags:
-    - autofs
-    - package
-
 - name: auto.master.d
   file:
     path: /etc/auto.master.d

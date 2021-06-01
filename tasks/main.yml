@@ -1,9 +1,52 @@
 ---
-- name: "include {{ ansible_os_family }} variables"
-  include_vars: "{{ ansible_os_family }}.yml"
+- name: package
+  package:
+    name: autofs
+  tags:
+    - autofs
+    - package
+
+- name: package_facts
+  package_facts:
+    manager: auto
+  tags:
+    - autofs
+    - facts
 
 - name: "include {{ ansible_os_family }} tasks"
   include_tasks: "{{ ansible_os_family }}.yml"
+
+- name: rpcbind off
+  service:
+    name: "{{ item }}"
+    enabled: false
+    state: stopped
+  loop:
+    - rpcbind.service
+    - rpcbind.socket
+  when:
+    - "'autofs' in ansible_facts.packages"
+    - ansible_service_mgr == "systemd"
+    - autofs_rpcbind_enable is defined
+    - not autofs_rpcbind_enable
+  tags:
+    - autofs
+    - rpcbind
+
+- name: rpcbind on
+  service:
+    name: "{{ item }}"
+    enabled: true
+  loop:
+    - rpcbind.service
+    - rpcbind.socket
+  when:
+    - "'autofs' in ansible_facts.packages"
+    - ansible_service_mgr == "systemd"
+    - autofs_rpcbind_enable is not defined or autofs_rpcbind_enable
+  tags:
+    - autofs
+    - rpcbind
 
 - name: override
   block:

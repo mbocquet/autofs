@@ -4,11 +4,15 @@
   service:
     name: autofs
     state: reloaded
+  when:
+    - "'autofs' in ansible_facts.packages"
 
 - name: restart autofs
   service:
     name: autofs
     state: restarted
+  when:
+    - "'autofs' in ansible_facts.packages"
 
 - name: reload systemd
   systemd:

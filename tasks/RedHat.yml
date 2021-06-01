@@ -1,11 +1,4 @@
 ---
-- name: packages
-  package:
-    name: "{{ autofs_packages }}"
-  tags:
-    - autofs
-    - package
-
 - name: auto.master
   lineinfile:
     path: /etc/auto.master
@@ -21,19 +14,17 @@
     - autofs
     - auto.master.d
 
-- name: services
+- name: service
   service:
     name: "{{ item }}"
     enabled: true
     state: started
   loop:
     - autofs
-    - rpcbind.socket
-    - rpcbind.service
   when: ansible_service_mgr == "systemd"
   tags:
     - autofs
-    - services
+    - service
 
 - name: volumes
   template:
