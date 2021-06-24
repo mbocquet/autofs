@@ -4,4 +4,7 @@
   service:
     name: fail2ban
     state: restarted
+  when:
+    - "'fail2ban' in services"
+    - ansible_facts.services['fail2ban']['state'] == 'running'
 ...
