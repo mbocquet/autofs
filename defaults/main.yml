@@ -21,7 +21,10 @@
 # No mounts are configured unless this variable is defined
 #
 # autofs_mounts:
-#   - { mountname: 'backup', options: '{{ autofs_nfs_options }},rsize=1048576,wsize=1048576,nfsvers=3', filer: 'nas0', vol: '/srv/backup' }
+#   - mountname: 'backup'
+#     options: '{{ autofs_nfs_options }},rsize=1048576,wsize=1048576,nfsvers=3'
+#     filer: 'nas0'
+#     vol: '/srv/backup'
 #   - mountname: 'pics'
 #     options: '{{ autofs_nfs_options }},rsize=1048576,wsize=1048576,nfsvers=3'
 #     filer: 'nas1'
