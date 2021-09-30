@@ -16,12 +16,12 @@
 
 - name: service
   service:
-    name: "{{ item }}"
+    name: autofs
     enabled: true
     state: started
-  loop:
-    - autofs
-  when: ansible_service_mgr == "systemd"
+  when:
+    - "'autofs' in services"
+    - ansible_service_mgr == "systemd"
   tags:
     - autofs
     - service
@@ -40,4 +40,3 @@
   tags:
     - autofs
     - volumes
-...
