@@ -1,3 +1,0 @@
-# {{ ansible_managed }} roles/fail2ban/templates/jail.local
-
-
