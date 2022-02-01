@@ -21,6 +21,7 @@
       file:
         path: /etc/systemd/system/autofs.service.d
         state: directory
+        mode: 0755
       tags:
         - directory
 
@@ -28,6 +29,7 @@
       template:
         src: override.conf.j2
         dest: /etc/systemd/system/autofs.service.d/override.conf
+        mode: 0644
       notify: reload systemd
       tags:
         - template
