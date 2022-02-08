@@ -2,6 +2,7 @@
 - name: package
   package:
     name: autofs
+    update_cache: true
   tags:
     - autofs
     - package
