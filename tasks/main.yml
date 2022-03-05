@@ -17,6 +17,7 @@
   template:
     src: 'jail.local.j2'
     dest: "{{ fail2ban_jail_local }}"
+    mode: 0644
   notify:
     - fail2ban restart
   tags:
