@@ -13,7 +13,8 @@
     - autofs
     - facts
 
-- include_tasks: "{{ ansible_os_family }}.yml"
+- name: OS specific tasks
+  include_tasks: "{{ ansible_os_family }}.yml"
   tags:
     - autofs
     - auto.master.d
