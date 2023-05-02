@@ -1,6 +1,15 @@
 ---
 - name: package
   package:
+    name: sshfs
+  when:
+    - autofs_mounts is search ("sshfs")
+  tags:
+    - autofs
+    - package
+
+- name: package
+  package:
     name: autofs
     update_cache: true
   tags:
