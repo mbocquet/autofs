@@ -2,8 +2,19 @@
 - name: package
   package:
     name: sshfs
+    update_cache: true
   when:
     - autofs_mounts is search ("sshfs")
+  tags:
+    - autofs
+    - package
+
+- name: package
+  package:
+    name: cifs-utils
+    update_cache: true
+  when:
+    - autofs_mounts is search ("cifs")
   tags:
     - autofs
     - package
