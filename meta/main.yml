@@ -8,7 +8,7 @@ galaxy_info:
 
   license: GPLv3
 
-  min_ansible_version: 1.2
+  min_ansible_version: "1.2"
 
   platforms:
     - name: Debian
@@ -19,10 +19,10 @@ galaxy_info:
         - stretch
     - name: EL
       versions:
-        - 5
-        - 6
-        - 7
-        - 8
+        - "5"
+        - "6"
+        - "7"
+        - "8"
 
   galaxy_tags:
     - autofs
@@ -33,4 +33,3 @@ galaxy_info:
     - sysadmin
 
 dependencies: []
-...
