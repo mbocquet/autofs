@@ -11,27 +11,43 @@
 - name: auto.master
   template:
     src: auto.master.map.j2
-    dest: '/etc/auto.master.d/{{ item.name }}.autofs'
+    dest: "/etc/auto.master.d/{{ item.name }}.autofs"
     mode: 0644
-  loop: '{{ autofs_maps }}'
+  loop: "{{ autofs_maps }}"
   when: autofs_maps is defined
   notify: restart autofs
   tags:
     - autofs
     - auto.master
 
+- name: Divert /etc/auto.misc
+  community.general.dpkg_divert:
+    path:
+      "/etc/auto.{{ item.name }}"
+    divert:
+      "/etc/auto.{{ item.name }}.distrib"
+    rename: true
+  loop: "{{ autofs_maps }}"
+  notify: reload autofs
+  when:
+    - autofs_mounts is defined
+    - item.name == "misc"
+  tags:
+    - autofs
+    - volumes
+    - divert
+
 - name: volumes
   template:
     src: auto.map.j2
-    dest: '/etc/auto.{{ item.name }}'
+    dest: "/etc/auto.{{ item.name }}"
     owner: root
     group: root
     mode: 0644
     backup: true
-  loop: '{{ autofs_maps }}'
+  loop: "{{ autofs_maps }}"
   when: autofs_mounts is defined
   notify: reload autofs
-  ignore_errors: true
   tags:
     - autofs
     - volumes
