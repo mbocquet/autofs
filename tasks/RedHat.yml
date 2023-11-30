@@ -9,7 +9,6 @@
     state: present
     backup: true
   notify: restart autofs
-  ignore_errors: true
   tags:
     - autofs
     - auto.master.d
@@ -36,7 +35,6 @@
     backup: true
   when: autofs_mounts is defined
   notify: reload autofs
-  ignore_errors: true
   tags:
     - autofs
     - volumes
