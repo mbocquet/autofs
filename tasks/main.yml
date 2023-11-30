@@ -42,6 +42,13 @@
     - volumes
 
 - name: override
+  when:
+    - autofs_timeoutstopsec is defined
+    - ansible_service_mgr == 'systemd'
+  tags:
+    - autofs
+    - override
+    - systemd
   block:
     - name: directory
       file:
@@ -60,10 +67,3 @@
       tags:
         - template
         - file
-  when:
-    - autofs_timeoutstopsec is defined
-    - ansible_service_mgr == 'systemd'
-  tags:
-    - autofs
-    - override
-    - systemd
