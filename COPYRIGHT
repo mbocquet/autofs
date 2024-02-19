@@ -1,6 +1,6 @@
 'autofs'. Ansible role to install and configure autofs.
 
-Copyright © 2016-2023 Mathias Bocquet (mbocquet@sekoya.org)
+Copyright © 2016-2024 Mathias Bocquet (mbocquet@sekoya.org)
 
 This file is part of 'autofs' Ansible role.
 
