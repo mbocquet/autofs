@@ -1,6 +1,6 @@
 ---
 - name: auto.master.d
-  file:
+  ansible.builtin.file:
     path: /etc/auto.master.d
     state: directory
     mode: 0755
@@ -9,7 +9,7 @@
     - auto.master.d
 
 - name: auto.master
-  template:
+  ansible.builtin.template:
     src: auto.master.map.j2
     dest: "/etc/auto.master.d/{{ item.name }}.autofs"
     mode: 0644
@@ -38,7 +38,7 @@
     - divert
 
 - name: volumes
-  template:
+  ansible.builtin.template:
     src: auto.map.j2
     dest: "/etc/auto.{{ item.name }}"
     owner: root

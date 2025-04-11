@@ -1,6 +1,6 @@
 ---
 - name: package
-  package:
+  ansible.builtin.package:
     name: sshfs
     update_cache: true
   when:
@@ -10,7 +10,7 @@
     - package
 
 - name: package
-  package:
+  ansible.builtin.package:
     name: cifs-utils
     update_cache: true
   when:
@@ -20,7 +20,7 @@
     - package
 
 - name: package
-  package:
+  ansible.builtin.package:
     name: autofs
     update_cache: true
   tags:
@@ -28,13 +28,13 @@
     - package
 
 - name: service_facts
-  service_facts:
+  ansible.builtin.service_facts:
   tags:
     - autofs
     - facts
 
 - name: OS specific tasks
-  include_tasks: "{{ ansible_os_family }}.yml"
+  ansible.builtin.include_tasks: "{{ ansible_os_family }}.yml"
   tags:
     - autofs
     - auto.master.d
@@ -51,7 +51,7 @@
     - systemd
   block:
     - name: directory
-      file:
+      ansible.builtin.file:
         path: /etc/systemd/system/autofs.service.d
         state: directory
         mode: 0755
@@ -59,7 +59,7 @@
         - directory
 
     - name: template
-      template:
+      ansible.builtin.template:
         src: override.conf.j2
         dest: /etc/systemd/system/autofs.service.d/override.conf
         mode: 0644

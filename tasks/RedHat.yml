@@ -1,6 +1,6 @@
 ---
 - name: auto.master
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/auto.master
     regexp: '^.*/misc.*'
     firstmatch: true
@@ -14,7 +14,7 @@
     - auto.master.d
 
 - name: service
-  service:
+  ansible.builtin.service:
     name: autofs
     enabled: true
     state: started
@@ -26,7 +26,7 @@
     - service
 
 - name: volumes
-  template:
+  ansible.builtin.template:
     src: auto.map.j2
     dest: /etc/auto.misc
     owner: root
