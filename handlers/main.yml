@@ -1,19 +1,19 @@
 ---
 # handlers file for autofs
-- name: reload autofs
+- name: Reload autofs
   ansible.builtin.service:
     name: autofs
     state: reloaded
   when:
     - "'autofs' in services"
 
-- name: restart autofs
+- name: Restart autofs
   ansible.builtin.service:
     name: autofs
     state: restarted
   when:
     - "'autofs' in services"
 
-- name: reload systemd
+- name: Reload systemd
   ansible.builtin.systemd:
     daemon_reload: true

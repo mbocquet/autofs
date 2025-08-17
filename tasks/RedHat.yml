@@ -1,5 +1,5 @@
 ---
-- name: auto.master
+- name: Line in auto.master
   ansible.builtin.lineinfile:
     path: /etc/auto.master
     regexp: '^.*/misc.*'
@@ -8,12 +8,12 @@
     line: "/misc /etc/auto.misc --ghost --timeout={{ autofs_timeout }}"
     state: present
     backup: true
-  notify: restart autofs
+  notify: Restart autofs
   tags:
     - autofs
     - auto.master.d
 
-- name: service
+- name: Service
   ansible.builtin.service:
     name: autofs
     enabled: true
@@ -25,7 +25,7 @@
     - autofs
     - service
 
-- name: volumes
+- name: Volumes
   ansible.builtin.template:
     src: auto.map.j2
     dest: /etc/auto.misc
@@ -34,7 +34,7 @@
     mode: 0644
     backup: true
   when: autofs_mounts is defined
-  notify: reload autofs
+  notify: Reload autofs
   tags:
     - autofs
     - volumes

@@ -1,5 +1,5 @@
 ---
-- name: package
+- name: Package
   ansible.builtin.package:
     name: sshfs
     update_cache: true
@@ -9,7 +9,7 @@
     - autofs
     - package
 
-- name: package
+- name: Package
   ansible.builtin.package:
     name: cifs-utils
     update_cache: true
@@ -19,7 +19,7 @@
     - autofs
     - package
 
-- name: package
+- name: Package
   ansible.builtin.package:
     name: autofs
     update_cache: true
@@ -27,7 +27,7 @@
     - autofs
     - package
 
-- name: service_facts
+- name: Service_facts
   ansible.builtin.service_facts:
   tags:
     - autofs
@@ -41,7 +41,7 @@
     - auto.master
     - volumes
 
-- name: override
+- name: Override
   when:
     - autofs_timeoutstopsec is defined
     - ansible_service_mgr == 'systemd'
@@ -50,7 +50,7 @@
     - override
     - systemd
   block:
-    - name: directory
+    - name: Directory
       ansible.builtin.file:
         path: /etc/systemd/system/autofs.service.d
         state: directory
@@ -58,12 +58,12 @@
       tags:
         - directory
 
-    - name: template
+    - name: Template
       ansible.builtin.template:
         src: override.conf.j2
         dest: /etc/systemd/system/autofs.service.d/override.conf
         mode: 0644
-      notify: reload systemd
+      notify: Reload systemd
       tags:
         - template
         - file
