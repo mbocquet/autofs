@@ -31,7 +31,7 @@
     dest: /etc/auto.misc
     owner: root
     group: root
-    mode: 0644
+    mode: "0644"
     backup: true
   when: autofs_mounts is defined
   notify: Reload autofs
