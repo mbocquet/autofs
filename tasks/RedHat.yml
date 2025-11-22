@@ -2,9 +2,9 @@
 - name: Line in auto.master
   ansible.builtin.lineinfile:
     path: /etc/auto.master
-    regexp: "^.*/misc.*"
+    regexp: ^.*/misc.*
     firstmatch: true
-    insertafter: "^.*/misc.*"
+    insertafter: ^.*/misc.*
     line: /misc /etc/auto.misc --ghost --timeout={{ autofs_timeout }}
     state: present
     backup: true

@@ -11,7 +11,7 @@
 - name: File auto.master
   ansible.builtin.template:
     src: auto.master.map.j2
-    dest: "/etc/auto.master.d/{{ item.name }}.autofs"
+    dest: /etc/auto.master.d/{{ item.name }}.autofs
     mode: "0644"
   loop: "{{ autofs_maps }}"
   when: autofs_maps is defined
@@ -23,9 +23,9 @@
 - name: Divert /etc/auto.misc
   community.general.dpkg_divert:
     path:
-      "/etc/auto.{{ item.name }}"
+      /etc/auto.{{ item.name }}
     divert:
-      "/etc/auto.{{ item.name }}.distrib"
+      /etc/auto.{{ item.name }}.distrib
     rename: true
   loop: "{{ autofs_maps }}"
   notify: Reload autofs
@@ -40,7 +40,7 @@
 - name: Volumes
   ansible.builtin.template:
     src: auto.map.j2
-    dest: "/etc/auto.{{ item.name }}"
+    dest: /etc/auto.{{ item.name }}
     owner: root
     group: root
     mode: "0644"
