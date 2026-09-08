@@ -19,7 +19,7 @@
     enabled: true
     state: started
   when:
-    - "'autofs' in services"
+    - "'autofs' in ansible_facts.services"
     - ansible_service_mgr == "systemd"
   tags:
     - autofs

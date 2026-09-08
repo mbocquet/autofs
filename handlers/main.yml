@@ -5,14 +5,14 @@
     name: autofs
     state: reloaded
   when:
-    - "'autofs' in services"
+    - "'autofs' in ansible_facts.services"
 
 - name: Restart autofs
   ansible.builtin.service:
     name: autofs
     state: restarted
   when:
-    - "'autofs' in services"
+    - "'autofs' in ansible_facts.services"
 
 - name: Reload systemd
   ansible.builtin.systemd:
